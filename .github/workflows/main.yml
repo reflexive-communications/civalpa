@@ -90,4 +90,13 @@ jobs:
     - name: Run unit tests
       run: |
           cd ${{ env.LOCAL_DEPLOY_TARGET }}"/"${{ env.SITE_NAME }}"/web/sites/default/files/civicrm/ext/"${{ env.EXTENSION_NAME }}
-          phpunit --verbose
+          XDEBUG_MODE=coverage phpunit --exclude-group headless --verbose --coverage-html html-cov
+
+    - name: Generate test coverage badge
+      uses: ./
+      with:
+          coverage_badge_path: "coverage/badge.svg"
+          push_badge: true
+          repo_token: ${{ secrets.GITHUB_TOKEN }}
+          report_type: "html"
+          report: ${{ env.LOCAL_DEPLOY_TARGET }}"/"${{ env.SITE_NAME }}"/web/sites/default/files/civicrm/ext/"${{ env.EXTENSION_NAME }}"/html-cov/index.html"
