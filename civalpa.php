@@ -143,6 +143,30 @@ function civalpa_civicrm_themes(&$themes) {
   _civalpa_civix_civicrm_themes($themes);
 }
 
+/**
+ * Implements hook_civicrm_alterMailParams().
+ */
+function civalpa_civicrm_alterMailParams(&$params, $context) {
+  $maxLineWidth = 900;
+  $xDebugHeaderValue = "";
+  $wrappedText = wordwrap($params["text"], $maxLineWidth);
+  if ($wrappedText !== $params["text"]) {
+    $xDebugHeaderValue .= "textWrap,";
+    $params["text"] = $wrappedText;
+  }
+  $wrappedHtml = wordwrap($params["html"], $maxLineWidth);
+  if ($wrappedHtml !== $params["html"]) {
+    $xDebugHeaderValue .= "htmlWrap";
+    $params["html"] = $wrappedHtml;
+  }
+  if ($xDebugHeaderValue !== "") {
+      if (!isset($params["headers"])) {
+        $params["headers"] = [];
+      }
+      $params["headers"]["X-CIVALPA-DEBUG"] = $xDebugHeaderValue;
+  }
+}
+
 // --- Functions below this ship commented out. Uncomment as required. ---
 
 /**
