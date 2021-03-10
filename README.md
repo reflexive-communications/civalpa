@@ -1,5 +1,7 @@
 # CivAlPa
 
+![CI](https://github.com/reflexive-communications/civalpa/workflows/CI/badge.svg)
+
 Civimail Alter mail Params extension. It can be used for wrapping the text, html strings, also manipulating headers. The config is currently hardcoded to the Config class.
 
 The extension is licensed under [AGPL-3.0](LICENSE.txt).
