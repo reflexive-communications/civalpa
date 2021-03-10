@@ -1,15 +1,13 @@
-# civalpa
+# CivAlPa
 
-![Screenshot](/images/screenshot.png)
-
-(*FIXME: In one or two paragraphs, describe what the extension does and why one would download it. *)
+Civimail Alter mail Params extension. It can be used for wrapping the text, html strings, also manipulating headers. The config is currently hardcoded to the Config class.
 
 The extension is licensed under [AGPL-3.0](LICENSE.txt).
 
 ## Requirements
 
 * PHP v7.2+
-* CiviCRM (*FIXME: Version number*)
+* CiviCRM 5.29
 
 ## Installation (Web UI)
 
@@ -22,7 +20,7 @@ install it with the command-line tool [cv](https://github.com/civicrm/cv).
 
 ```bash
 cd <extension-dir>
-cv dl civalpa@https://github.com/FIXME/civalpa/archive/master.zip
+cv dl civalpa@https://github.com/reflexive-communications/civalpa/archive/master.zip
 ```
 
 ## Installation (CLI, Git)
@@ -31,14 +29,6 @@ Sysadmins and developers may clone the [Git](https://en.wikipedia.org/wiki/Git) 
 install it with the command-line tool [cv](https://github.com/civicrm/cv).
 
 ```bash
-git clone https://github.com/FIXME/civalpa.git
+git clone https://github.com/reflexive-communications/civalpa.git
 cv en civalpa
 ```
-
-## Getting Started
-
-(* FIXME: Where would a new user navigate to get started? What changes would they see? *)
-
-## Known Issues
-
-(* FIXME *)
