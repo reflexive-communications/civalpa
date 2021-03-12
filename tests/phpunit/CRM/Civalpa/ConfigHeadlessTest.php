@@ -90,7 +90,7 @@ class CRM_Civalpa_ConfigHeadlessTest extends \PHPUnit\Framework\TestCase impleme
         self::assertEquals($cfg["html-line-width"]["value"], CRM_Civalpa_Config::DEFAULT_HTML_LINE_WIDTH, "Invalid html-line-width.value value.");
 
         self::assertTrue($config->remove(), "Remove config has to be successful.");
-        self::assertException(CRM_Core_Exception::class, "Invalid exception class.");
+        self::expectException(CRM_Core_Exception::class, "Invalid exception class.");
         self::expectExceptionMessage("civalpa_test_rules config is missing.", "Invalid exception message.");
         $cfg = $config->get();
     }
