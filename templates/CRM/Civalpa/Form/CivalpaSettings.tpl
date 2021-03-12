@@ -1,27 +1,28 @@
-{* HEADER *}
+<div class="crm-container">
+    {* HEADER *}
+    <div class="help">{$headerText}</div>
+    <div class="crm-submit-buttons">{include file="CRM/common/formButtons.tpl" location="top"}</div>
 
-<div class="crm-submit-buttons">
-{include file="CRM/common/formButtons.tpl" location="top"}
-</div>
+    <div class="crm-section">
+        <div class="label">{$form.debugMode.label}</div>
+        <div class="content">{$form.debugMode.html}</div>
+        <div class="clear"></div>
+    </div>
+    <div class="crm-section">
+        <div class="label">{$form.textLineWidth.label}</div>
+        <div class="content">{$form.textLineWidth.html}</div>
+        <div class="label">{$form.useTextRule.label}</div>
+        <div class="content">{$form.useTextRule.html}</div>
+        <div class="clear"></div>
+    </div>
+    <div class="crm-section">
+        <div class="label">{$form.htmlLineWidth.label}</div>
+        <div class="content">{$form.htmlLineWidth.html}</div>
+        <div class="label">{$form.useHtmlRule.label}</div>
+        <div class="content">{$form.useHtmlRule.html}</div>
+        <div class="clear"></div>
+    </div>
 
-{* FIELD EXAMPLE: OPTION 1 (AUTOMATIC LAYOUT) *}
-
-{foreach from=$elementNames item=elementName}
-  <div class="crm-section">
-    <div class="label">{$form.$elementName.label}</div>
-    <div class="content">{$form.$elementName.html}</div>
-    <div class="clear"></div>
-  </div>
-{/foreach}
-
-{* FIELD EXAMPLE: OPTION 2 (MANUAL LAYOUT)
-
-  <div>
-    <span>{$form.favorite_color.label}</span>
-    <span>{$form.favorite_color.html}</span>
-  </div>
-
-{* FOOTER *}
-<div class="crm-submit-buttons">
-{include file="CRM/common/formButtons.tpl" location="bottom"}
+    {* FOOTER *}
+    <div class="crm-submit-buttons">{include file="CRM/common/formButtons.tpl" location="bottom"}</div>
 </div>
