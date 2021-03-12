@@ -124,5 +124,10 @@ class CRM_Civalpa_ConfigHeadlessTest extends \PHPUnit\Framework\TestCase impleme
 
         $cfgLoaded = $otherConfig->get();
         self::assertEquals($cfg, $cfgLoaded, "Invalid loaded configuration.");
+
+        $missingConfig = new CRM_Civalpa_Config("civalpa_test_missing_config");
+        self::expectException(CRM_Core_Exception::class, "Invalid exception class.");
+        self::expectExceptionMessage("civalpa_test_missing_config_rules config invalid.", "Invalid exception message.");
+        self::assertEmpty($missingConfig->load(), "Load result supposed to be empty.");
     }
 }
