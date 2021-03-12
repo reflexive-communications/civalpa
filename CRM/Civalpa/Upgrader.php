@@ -6,15 +6,34 @@ use CRM_Civalpa_ExtensionUtil as E;
  */
 class CRM_Civalpa_Upgrader extends CRM_Civalpa_Upgrader_Base {
 
+    /**
+     * Install process. Init database.
+     *
+     * @throws CRM_Core_Exception
+     */
+    public function install() {
+        $config = new CRM_Civalpa_Config($this->extensionName);
+        // Create default configs
+        if (!$config->create()) {
+            throw new CRM_Core_Exception($this->extensionName.ts(' could not create configs in database'));
+        }
+    }
+
+    /**
+     * Uninstall process. Clean database.
+     *
+     * @throws CRM_Core_Exception
+     */
+    public function uninstall() {
+        $config = new CRM_Civalpa_Config($this->extensionName);
+        // delete current configs
+        if (!$config->remove()) {
+            throw new CRM_Core_Exception($this->extensionName.ts(' could not remove configs from database'));
+        }
+    }
+
   // By convention, functions that look like "function upgrade_NNNN()" are
   // upgrade tasks. They are executed in order (like Drupal's hook_update_N).
-
-  /**
-   * Example: Run an external SQL script when the module is installed.
-   *
-  public function install() {
-    $this->executeSqlFile('sql/myinstall.sql');
-  }
 
   /**
    * Example: Work with entities usually not available during the install step.
@@ -32,13 +51,6 @@ class CRM_Civalpa_Upgrader extends CRM_Civalpa_Upgrader_Base {
   //  civicrm_api3('Setting', 'create', array(
   //    'myWeirdFieldSetting' => array('id' => $customFieldId, 'weirdness' => 1),
   //  ));
-  // }
-
-  /**
-   * Example: Run an external SQL script when the module is uninstalled.
-   */
-  // public function uninstall() {
-  //  $this->executeSqlFile('sql/myuninstall.sql');
   // }
 
   /**
