@@ -58,8 +58,17 @@ class CRM_Civalpa_Form_CivalpaSettings extends CRM_Core_Form {
             "useHtmlRule", // field name
             "Use HTML wrap rule", // field label
         );
+        $this->addButtons(
+            [
+                [
+                    'type' => 'submit',
+                    'name' => ts('Update settings'),
+                    'isDefault' => true,
+                ],
+            ]
+        );
 
-        $this->assign('headerText', ts('Civalpa Settings'));
+        $this->setTitle(ts('Civalpa Settings'));
 
         parent::buildQuickForm();
     }
@@ -78,5 +87,22 @@ class CRM_Civalpa_Form_CivalpaSettings extends CRM_Core_Form {
      */
     public function postProcess() {
         parent::postProcess();
+    }
+
+    /**
+     * This virtual function is used to set the default values of various form elements.
+     *
+     * @return array|NULL
+     *   reference to the array of default values
+     */
+    public function setDefaultValues()    {
+        $config = $this->config->get();
+        $this->_defaults['debugMode'] = $config["debug-mode"];
+        $this->_defaults['textLineWidth'] = $config["text-line-width"]["value"];
+        $this->_defaults['useTextRule'] = $config["text-line-width"]["use"];
+        $this->_defaults['htmlLineWidth'] = $config["html-line-width"]["value"];
+        $this->_defaults['useHtmlRule'] = $config["html-line-width"]["use"];
+
+        return $this->_defaults;
     }
 }

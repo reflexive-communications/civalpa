@@ -1,6 +1,5 @@
 <div class="crm-container">
     {* HEADER *}
-    <div class="help">{$headerText}</div>
     <div class="crm-submit-buttons">{include file="CRM/common/formButtons.tpl" location="top"}</div>
 
     <div class="crm-section">
