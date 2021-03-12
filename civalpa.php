@@ -143,17 +143,6 @@ function civalpa_civicrm_themes(&$themes) {
   _civalpa_civix_civicrm_themes($themes);
 }
 
-/**
- * Implements hook_civicrm_alterMailParams().
- */
-function civalpa_civicrm_alterMailParams(&$params, $context) {
-  $config = CRM_Civalpa_Config::getConfig();
-  $result = CRM_Civalpa_TextFormatter::format($config, $params["text"], $params["html"]);
-  $params["text"] = $result["text"];
-  $params["html"] = $result["html"];
-  CRM_Civalpa_HeaderManipulator::update($params, $config, $result["debug"]);
-}
-
 // --- Functions below this ship commented out. Uncomment as required. ---
 
 /**
@@ -181,3 +170,23 @@ function civalpa_civicrm_alterMailParams(&$params, $context) {
 //  ));
 //  _civalpa_civix_navigationMenu($menu);
 //}
+
+// The functions below are changed or added by us.
+/**
+ * Implements hook_civicrm_alterMailParams().
+ */
+function civalpa_civicrm_alterMailParams(&$params, $context) {
+    $cfg = new CRM_Civalpa_Config(E::SHORT_NAME);
+    try {
+        $cfg->load();
+    } catch (CRM_Core_Exception $e) {
+        // error case, don't modify the mail.
+        // might be possible to rase some alert here.
+        return;
+    }
+    $config = $cfg->get();
+    $result = CRM_Civalpa_TextFormatter::format($config, $params["text"], $params["html"]);
+    $params["text"] = $result["text"];
+    $params["html"] = $result["html"];
+    CRM_Civalpa_HeaderManipulator::update($params, $config, $result["debug"]);
+}
