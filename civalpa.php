@@ -154,23 +154,6 @@ function civalpa_civicrm_themes(&$themes) {
 //
 //}
 
-/**
- * Implements hook_civicrm_navigationMenu().
- *
- * @link https://docs.civicrm.org/dev/en/latest/hooks/hook_civicrm_navigationMenu
- */
-//function civalpa_civicrm_navigationMenu(&$menu) {
-//  _civalpa_civix_insert_navigation_menu($menu, 'Mailings', array(
-//    'label' => E::ts('New subliminal message'),
-//    'name' => 'mailing_subliminal_message',
-//    'url' => 'civicrm/mailing/subliminal',
-//    'permission' => 'access CiviMail',
-//    'operator' => 'OR',
-//    'separator' => 0,
-//  ));
-//  _civalpa_civix_navigationMenu($menu);
-//}
-
 // The functions below are changed or added by us.
 /**
  * Implements hook_civicrm_alterMailParams().
@@ -189,4 +172,22 @@ function civalpa_civicrm_alterMailParams(&$params, $context) {
     $params["text"] = $result["text"];
     $params["html"] = $result["html"];
     CRM_Civalpa_HeaderManipulator::update($params, $config, $result["debug"]);
+}
+
+/**
+ * Implements hook_civicrm_navigationMenu().
+ *
+ * @link https://docs.civicrm.org/dev/en/latest/hooks/hook_civicrm_navigationMenu
+ */
+function civalpa_civicrm_navigationMenu(&$menu) {
+    _civalpa_civix_insert_navigation_menu($menu, "Administer/CiviMail",
+        [
+            "label" => E::ts('CivAlPa Settings'),
+            "name" => "civalpa_settings",
+            "url" => "civicrm/admin/civalpa",
+            "permission" => "administer CiviCRM",
+            "separator" => 0,
+        ]
+    );
+    _civalpa_civix_navigationMenu($menu);
 }
