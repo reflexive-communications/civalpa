@@ -6,24 +6,13 @@ use Civi\Test\HookInterface;
 use Civi\Test\TransactionalInterface;
 
 /**
- * FIXME - Add test description.
- *
- * Tips:
- *  - With HookInterface, you may implement CiviCRM hooks directly in the test class.
- *    Simply create corresponding functions (e.g. "hook_civicrm_post(...)" or similar).
- *  - With TransactionalInterface, any data changes made by setUp() or test****() functions will
- *    rollback automatically -- as long as you don't manipulate schema or truncate tables.
- *    If this test needs to manipulate schema or truncate tables, then either:
- *       a. Do all that using setupHeadless() and Civi\Test.
- *       b. Disable TransactionalInterface, and handle all setup/teardown yourself.
+ * Tests for the install, uninstall process.
  *
  * @group headless
  */
 class CRM_Civalpa_UpgraderHeadlessTest extends \PHPUnit\Framework\TestCase implements HeadlessInterface, HookInterface, TransactionalInterface {
 
     public function setUpHeadless() {
-        // Civi\Test has many helpers, like install(), uninstall(), sql(), and sqlFile().
-        // See: https://docs.civicrm.org/dev/en/latest/testing/phpunit/#civitest
         return \Civi\Test::headless()
             ->installMe(__DIR__)
             ->apply();
@@ -38,18 +27,28 @@ class CRM_Civalpa_UpgraderHeadlessTest extends \PHPUnit\Framework\TestCase imple
     }
 
     /**
-     * Example: Test that a version is returned.
+     * Test the install process.
      */
-    public function testWellFormedVersion() {
-        $this->assertNotEmpty(E::SHORT_NAME);
-        $this->assertRegExp('/^([0-9\.]|alpha|beta)*$/', \CRM_Utils_System::version());
+    public function testInstall() {
+        $installer = new CRM_Civalpa_Upgrader("civalpa_test", ".");
+        try {
+            $this->assertEmpty($installer->install());
+        } catch (Exception $e) {
+            $this->fail("Should not throw exception.");
+        }
     }
 
     /**
-     * Example: Test that we're using a fake CMS.
+     * Test the uninstall process.
      */
-    public function testWellFormedUF() {
-        $this->assertEquals('UnitTests', CIVICRM_UF);
+    public function testUninstall() {
+        $installer = new CRM_Civalpa_Upgrader("civalpa_test", ".");
+        $this->assertEmpty($installer->install());
+        try {
+            $this->assertEmpty($installer->uninstall());
+        } catch (Exception $e) {
+            $this->fail("Should not throw exception.");
+        }
     }
 
 }
