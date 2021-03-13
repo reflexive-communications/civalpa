@@ -32,6 +32,7 @@ jobs:
         php-version: '7.3'
         tools: composer:v1, phpunit:8.5.0
         extensions: cli fpm mysql json opcache mbstring xml gd curl intl xdebug
+        coverage: xdebug
 
     - name: Start mysql daemon.
       run: |
