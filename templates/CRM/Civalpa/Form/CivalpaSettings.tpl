@@ -2,25 +2,38 @@
     {* HEADER *}
     <div class="crm-submit-buttons">{include file="CRM/common/formButtons.tpl" location="top"}</div>
 
-    <div class="crm-section">
-        <div class="label">{$form.debugMode.label}</div>
-        <div class="content">{$form.debugMode.html}</div>
-        <div class="clear"></div>
-    </div>
-    <div class="crm-section">
-        <div class="label">{$form.textLineWidth.label}</div>
-        <div class="content">{$form.textLineWidth.html}</div>
-        <div class="label">{$form.useTextRule.label}</div>
-        <div class="content">{$form.useTextRule.html}</div>
-        <div class="clear"></div>
-    </div>
-    <div class="crm-section">
-        <div class="label">{$form.htmlLineWidth.label}</div>
-        <div class="content">{$form.htmlLineWidth.html}</div>
-        <div class="label">{$form.useHtmlRule.label}</div>
-        <div class="content">{$form.useHtmlRule.html}</div>
-        <div class="clear"></div>
-    </div>
+    {* Debug header *}
+    <h3>Debug header options</h3>
+    <table class="form-layout">
+        <tr class="crm-section crm-civalpa_debugMode">
+            <td class="label">{$form.debugMode.label}</td>
+            <td class="content"></td>
+            <td class="content">{$form.debugMode.html}</td>
+        </tr>
+    </table>
+    {* Line width manipulation *}
+    <h3>Text manipulation options</h3>
+    <table class="form-layout">
+        <thead>
+            <tr>
+                <th>{ts}Rule name{/ts}</th>
+                <th>{ts}Value{/ts}</th>
+                <th>{ts}Use{/ts}</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr class="crm-section crm-civalpa_textLine">
+                <td class="label"><b>{$form.textLineWidth.label}</b></td>
+                <td class="content">{$form.textLineWidth.html}</td>
+                <td class="content">{$form.useTextRule.html}</td>
+            </tr>
+            <tr class="crm-section crm-civalpa_htmlLine">
+                <td class="label"><b>{$form.htmlLineWidth.label}</b></td>
+                <td class="content">{$form.htmlLineWidth.html}</td>
+                <td class="content">{$form.useHtmlRule.html}</td>
+            </tr>
+        </tbody>
+    </table>
 
     {* FOOTER *}
     <div class="crm-submit-buttons">{include file="CRM/common/formButtons.tpl" location="bottom"}</div>
