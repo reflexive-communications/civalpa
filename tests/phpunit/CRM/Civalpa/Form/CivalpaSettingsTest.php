@@ -12,6 +12,17 @@ use Civi\Test\TransactionalInterface;
  */
 class CRM_Civalpa_Form_CivalpaSettingsTest extends \PHPUnit\Framework\TestCase implements HeadlessInterface, HookInterface, TransactionalInterface {
 
+    const TEST_SETTINGS = [
+        "debug-mode" => true,
+        "text-line-width" => [
+            "use" => true,
+            "value" => 30,
+        ],
+        "html-line-width" => [
+            "use" => true,
+            "value" => 30,
+        ],
+    ];
     public function setUpHeadless() {
         return \Civi\Test::headless()
             ->installMe(__DIR__)
@@ -27,18 +38,75 @@ class CRM_Civalpa_Form_CivalpaSettingsTest extends \PHPUnit\Framework\TestCase i
     }
 
     /**
-     * Example: Test that a version is returned.
+     * PreProcess test case with existing config.
+     * Setup test configuration then call the function.
+     * It shouldn't throw exception.
      */
-    public function testWellFormedVersion() {
-        $this->assertNotEmpty(E::SHORT_NAME);
-        $this->assertRegExp('/^([0-9\.]|alpha|beta)*$/', \CRM_Utils_System::version());
+    public function testPreProcessExistingConfig() {
+        $this->markTestIncomplete("This test has not been implemented yet.");
     }
 
     /**
-     * Example: Test that we're using a fake CMS.
+     * PreProcess test case with deleted config.
+     * Setup test configuration then call the function.
+     * It should throw exception.
      */
-    public function testWellFormedUF() {
-        $this->assertEquals('UnitTests', CIVICRM_UF);
+    public function testPreProcessMissingConfig() {
+        $this->markTestIncomplete("This test has not been implemented yet.");
     }
 
+    /**
+     * Build quick form test case.
+     * Setup test configuration then call the function.
+     * It shouldn't throw exception.
+     * The number of form elements should be fine.
+     * The number of buttons should be fine.
+     * The title should be set.
+     */
+    public function testBuildQuickForm() {
+        $this->markTestIncomplete("This test has not been implemented yet.");
+    }
+
+    /**
+     * Add Rules test case.
+     * It shouldn't throw exception.
+     */
+    public function testAddRules() {
+        $this->markTestIncomplete("This test has not been implemented yet.");
+    }
+
+    /**
+     * Config Validator test case with valid values.
+     */
+    public function testConfigValidatorValid() {
+        $this->markTestIncomplete("This test has not been implemented yet.");
+    }
+
+    /**
+     * Config Validator test case with invalid values.
+     */
+    public function testConfigValidatorInvalid() {
+        $this->markTestIncomplete("This test has not been implemented yet.");
+    }
+
+    /**
+     * Post Process test case. The values are the same.
+     */
+    public function testPostProcessNotChanged() {
+        $this->markTestIncomplete("This test has not been implemented yet.");
+    }
+
+    /**
+     * Post Process test case. The values are changed.
+     */
+    public function testPostProcessChanged() {
+        $this->markTestIncomplete("This test has not been implemented yet.");
+    }
+
+    /**
+     * Set Default Values test case.
+     */
+    public function testSetDefaultValues() {
+        $this->markTestIncomplete("This test has not been implemented yet.");
+    }
 }
