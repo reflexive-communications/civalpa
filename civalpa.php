@@ -164,7 +164,9 @@ function civalpa_civicrm_alterMailParams(&$params, $context) {
         $cfg->load();
     } catch (CRM_Core_Exception $e) {
         // error case, don't modify the mail.
-        // might be possible to rase some alert here.
+        // Create logger then log
+        $file_logger = CRM_Core_Error::createDebugLogger(E::SHORT_NAME);
+        $file_logger->err($e->getMessage());
         return;
     }
     $config = $cfg->get();
