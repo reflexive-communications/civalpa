@@ -122,7 +122,7 @@ class CRM_Civalpa_Form_CivalpaSettings extends CRM_Core_Form {
                 CRM_Core_Session::setStatus(ts("The config has been updated."), E::SHORT_NAME, "success", [ "expires" => 5000, ]);
             }
         } else {
-            CRM_Core_Session::setStatus(ts("The config is not changed."), E::SHORT_NAME, "info", [ "expires" => 5000, ]);
+            CRM_Core_Session::setStatus(ts("The config is not changed. No update was needed."), E::SHORT_NAME, "info", [ "expires" => 5000, ]);
         }
         parent::postProcess();
     }
