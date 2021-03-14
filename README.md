@@ -2,7 +2,7 @@
 
 ![CI](https://github.com/reflexive-communications/civalpa/workflows/CI/badge.svg)
 
-Civimail Alter mail Params extension. It can be used for wrapping the text, html strings, also manipulating headers. The setting form of this extension could be found under `Administer > CiviMail > CivAlPa Settings`. You need to have at lease administer civicrm priv. to be able to check or update the settings.
+Civimail Alter mail Params extension. It can be used for wrapping the text, html strings, also manipulating headers. The settings form of this extension could be found under `Administer > CiviMail > CivAlPa Settings`. You need to have at lease administer civicrm priv. to be able to check or update the settings.
 
 ![civalpa settings screenshot](./images/screenshot.png)
 
@@ -12,7 +12,7 @@ With the debug header checkbox the `X-CIVALPA-DEBUG` header could be enabled or 
 X-CIVALPA-DEBUG: textWrap,htmlWrap,
 ```
 
-The Text manipulator settings could be used to set a maximum value for the message lines. The text will be wrapped if the use checkbox of the rule is checked.
+The Text manipulator settings could be used to set a maximum value for the length of the message lines. The text will be wrapped if the use checkbox of the rule is checked.
 
 The extension is licensed under [AGPL-3.0](LICENSE.txt).
 
