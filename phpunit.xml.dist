@@ -14,6 +14,7 @@
         <!-- Skip the generated files -->
         <file>./civalpa.php</file>
         <file>./civalpa.civix.php</file>
+        <file>./CRM/Civalpa/Upgrader/Base.php</file>
       </exclude>
     </whitelist>
   </filter>
