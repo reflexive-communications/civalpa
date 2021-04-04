@@ -80,7 +80,7 @@ class CRM_Civalpa_ConfigHeadlessTest extends \PHPUnit\Framework\TestCase impleme
 
         self::assertTrue($config->remove(), "Remove config has to be successful.");
         self::expectException(CRM_Core_Exception::class, "Invalid exception class.");
-        self::expectExceptionMessage("civalpa_test_rules config is missing.", "Invalid exception message.");
+        self::expectExceptionMessage("civalpa_test_config config is missing.", "Invalid exception message.");
         $cfg = $config->get();
     }
 
@@ -116,7 +116,7 @@ class CRM_Civalpa_ConfigHeadlessTest extends \PHPUnit\Framework\TestCase impleme
 
         $missingConfig = new CRM_Civalpa_Config("civalpa_test_missing_config");
         self::expectException(CRM_Core_Exception::class, "Invalid exception class.");
-        self::expectExceptionMessage("civalpa_test_missing_config_rules config invalid.", "Invalid exception message.");
+        self::expectExceptionMessage("civalpa_test_missing_config_config config invalid.", "Invalid exception message.");
         self::assertEmpty($missingConfig->load(), "Load result supposed to be empty.");
     }
 }
