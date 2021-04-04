@@ -10,26 +10,31 @@ use Civi\Test\TransactionalInterface;
  *
  * @group headless
  */
-class CRM_Civalpa_ConfigHeadlessTest extends \PHPUnit\Framework\TestCase implements HeadlessInterface, HookInterface, TransactionalInterface {
+class CRM_Civalpa_ConfigHeadlessTest extends \PHPUnit\Framework\TestCase implements HeadlessInterface, HookInterface, TransactionalInterface
+{
 
-    public function setUpHeadless() {
+    public function setUpHeadless()
+    {
         return \Civi\Test::headless()
             ->installMe(__DIR__)
             ->apply();
     }
 
-    public function setUp(): void {
+    public function setUp(): void
+    {
         parent::setUp();
     }
 
-    public function tearDown(): void {
+    public function tearDown(): void
+    {
         parent::tearDown();
     }
 
     /**
      * It checks that the create function works well.
      */
-    public function testCreate() {
+    public function testCreate()
+    {
         $config = new CRM_Civalpa_Config("civalpa_test");
         self::assertTrue($config->create(), "Create config has to be successful.");
         $cfg = $config->get();
@@ -52,7 +57,8 @@ class CRM_Civalpa_ConfigHeadlessTest extends \PHPUnit\Framework\TestCase impleme
     /**
      * It checks that the remove function works well.
      */
-    public function testRemove() {
+    public function testRemove()
+    {
         $config = new CRM_Civalpa_Config("civalpa_test");
         self::assertTrue($config->create(), "Create config has to be successful.");
         self::assertTrue($config->remove(), "Remove config has to be successful.");
@@ -61,7 +67,8 @@ class CRM_Civalpa_ConfigHeadlessTest extends \PHPUnit\Framework\TestCase impleme
     /**
      * It checks that the get function works well.
      */
-    public function testGet() {
+    public function testGet()
+    {
         $config = new CRM_Civalpa_Config("civalpa_test");
         self::assertTrue($config->create(), "Create config has to be successful.");
         $cfg = $config->get();
@@ -87,7 +94,8 @@ class CRM_Civalpa_ConfigHeadlessTest extends \PHPUnit\Framework\TestCase impleme
     /**
      * It checks that the get function works well.
      */
-    public function testUpdate() {
+    public function testUpdate()
+    {
         $config = new CRM_Civalpa_Config("civalpa_test");
         self::assertTrue($config->create(), "Create config has to be successful.");
         $cfg = $config->get();
@@ -100,7 +108,8 @@ class CRM_Civalpa_ConfigHeadlessTest extends \PHPUnit\Framework\TestCase impleme
     /**
      * It checks that the get function works well.
      */
-    public function testLoad() {
+    public function testLoad()
+    {
         $config = new CRM_Civalpa_Config("civalpa_test");
         self::assertTrue($config->create(), "Create config has to be successful.");
         $cfg = $config->get();

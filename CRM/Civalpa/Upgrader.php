@@ -4,14 +4,16 @@ use CRM_Civalpa_ExtensionUtil as E;
 /**
  * Collection of upgrade steps.
  */
-class CRM_Civalpa_Upgrader extends CRM_Civalpa_Upgrader_Base {
+class CRM_Civalpa_Upgrader extends CRM_Civalpa_Upgrader_Base
+{
 
     /**
      * Install process. Init database.
      *
      * @throws CRM_Core_Exception
      */
-    public function install() {
+    public function install()
+    {
         $config = new CRM_Civalpa_Config($this->extensionName);
         // Create default configs
         if (!$config->create()) {
@@ -24,7 +26,8 @@ class CRM_Civalpa_Upgrader extends CRM_Civalpa_Upgrader_Base {
      *
      * @throws CRM_Core_Exception
      */
-    public function uninstall() {
+    public function uninstall()
+    {
         $config = new CRM_Civalpa_Config($this->extensionName);
         // delete current configs
         if (!$config->remove()) {
@@ -143,5 +146,4 @@ class CRM_Civalpa_Upgrader extends CRM_Civalpa_Upgrader_Base {
   //   }
   //   return TRUE;
   // }
-
 }

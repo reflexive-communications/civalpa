@@ -1,6 +1,7 @@
 <?php
 
-class CRM_Civalpa_Config {
+class CRM_Civalpa_Config
+{
     const DEFAULT_TEXT_LINE_WIDTH = 990;
     const DEFAULT_HTML_LINE_WIDTH = 990;
 
@@ -12,7 +13,8 @@ class CRM_Civalpa_Config {
      *
      * @param string $extensionName prefix for db.
      */
-    public function __construct(string $extensionName) {
+    public function __construct(string $extensionName)
+    {
         $this->configName = $extensionName."_rules";
         $this->configuration = $this->defaultConfiguration();
     }
@@ -22,7 +24,8 @@ class CRM_Civalpa_Config {
      *
      * @return array the default configuration object.
      */
-    private function defaultConfiguration(): array {
+    private function defaultConfiguration(): array
+    {
         return [
             "debug-mode" => true,
             "text-line-width" => [
@@ -41,7 +44,8 @@ class CRM_Civalpa_Config {
      *
      * @return bool the status of the db write process.
      */
-    public function create(): bool {
+    public function create(): bool
+    {
         Civi::settings()->add([$this->configName => $this->configuration]);
         // check the save process with loading the saved content and compare
         // it with the current configuration
@@ -54,7 +58,8 @@ class CRM_Civalpa_Config {
      *
      * @return bool the status of the deletion process.
      */
-    public function remove(): bool {
+    public function remove(): bool
+    {
         Civi::settings()->revert($this->configName);
         // check the deletion process with loading the saved content and compare
         // it with null.
@@ -72,7 +77,8 @@ class CRM_Civalpa_Config {
      *
      * @throws CRM_Core_Exception.
      */
-    public function load(): void {
+    public function load(): void
+    {
         $conf = Civi::settings()->get($this->configName);
         // if not loaded well, it throws exception.
         if (is_null($conf) || !is_array($conf)) {
@@ -88,7 +94,8 @@ class CRM_Civalpa_Config {
      *
      * @return bool the status of the update process.
      */
-    public function update(array $newConfig): bool {
+    public function update(array $newConfig): bool
+    {
         Civi::settings()->set($this->configName, $newConfig);
         // check the save process with loading the saved content and compare
         // it with the newConfig configuration
@@ -107,7 +114,8 @@ class CRM_Civalpa_Config {
      *
      * @throws CRM_Core_Exception.
      */
-    public function get(): array {
+    public function get(): array
+    {
         if (is_null($this->configuration)) {
             throw new CRM_Core_Exception($this->configName." config is missing.");
         }

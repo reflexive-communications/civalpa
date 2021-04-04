@@ -7,7 +7,8 @@ use CRM_Civalpa_ExtensionUtil as E;
  *
  * @see https://docs.civicrm.org/dev/en/latest/framework/quickform/
  */
-class CRM_Civalpa_Form_CivalpaSettings extends CRM_Core_Form {
+class CRM_Civalpa_Form_CivalpaSettings extends CRM_Core_Form
+{
 
     /**
      * Configdb
@@ -22,13 +23,15 @@ class CRM_Civalpa_Form_CivalpaSettings extends CRM_Core_Form {
      *
      * @throws CRM_Core_Exception
      */
-    public function preProcess() {
+    public function preProcess()
+    {
         // Get current settings
         $this->config = new CRM_Civalpa_Config(E::SHORT_NAME);
         $this->config->load();
     }
 
-    public function buildQuickForm() {
+    public function buildQuickForm()
+    {
 
         // get the current configuration object
         $config = $this->config->get();
@@ -76,7 +79,8 @@ class CRM_Civalpa_Form_CivalpaSettings extends CRM_Core_Form {
     /**
      * If your form requires special validation, add one or more callbacks here
      */
-    public function addRules() {
+    public function addRules()
+    {
         $this->addFormRule(array('CRM_Civalpa_Form_CivalpaSettings', 'configValidator'));
     }
 
@@ -87,7 +91,8 @@ class CRM_Civalpa_Form_CivalpaSettings extends CRM_Core_Form {
      *
      * @return array|bool
      */
-    public function configValidator($values) {
+    public function configValidator($values)
+    {
         $errors = [];
         if (!is_numeric($values["textLineWidth"]) || intval($values["textLineWidth"], 10) < 1) {
             $errors["textLineWidth"] = ts("Only positiv integer values allowed.");
@@ -103,7 +108,8 @@ class CRM_Civalpa_Form_CivalpaSettings extends CRM_Core_Form {
      *
      * @throws CRM_Core_Exception
      */
-    public function postProcess() {
+    public function postProcess()
+    {
         $newConfig = [
             "debug-mode" => $this->_submitValues["debugMode"],
             "text-line-width" => [
@@ -133,7 +139,8 @@ class CRM_Civalpa_Form_CivalpaSettings extends CRM_Core_Form {
      * @return array|NULL
      *   reference to the array of default values
      */
-    public function setDefaultValues()    {
+    public function setDefaultValues()
+    {
         $config = $this->config->get();
         $this->_defaults['debugMode'] = $config["debug-mode"];
         $this->_defaults['textLineWidth'] = $config["text-line-width"]["value"];
