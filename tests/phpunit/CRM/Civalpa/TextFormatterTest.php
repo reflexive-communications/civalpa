@@ -14,18 +14,18 @@ class CRM_Civalpa_TextFormatterTest extends \PHPUnit\Framework\TestCase
         parent::setUp();
     }
 
-  /**
-   * The tearDown() method is executed after the test was executed (optional)
-   * This can be used for cleanup.
-   */
+    /**
+     * The tearDown() method is executed after the test was executed (optional)
+     * This can be used for cleanup.
+     */
     public function tearDown(): void
     {
         parent::tearDown();
     }
 
-  /**
-   * format test cases.
-   */
+    /**
+     * format test cases.
+     */
     public function testFormat()
     {
         $config = [
@@ -39,7 +39,7 @@ class CRM_Civalpa_TextFormatterTest extends \PHPUnit\Framework\TestCase
         "value" => 50,
         ],
         ];
-      // empty values for text and html. config has to be unchanged, debug has to be empty.
+        // empty values for text and html. config has to be unchanged, debug has to be empty.
         $emptyValue = "";
         $result = CRM_Civalpa_TextFormatter::format($config, $emptyValue, $emptyValue);
         self::assertTrue(array_key_exists("html", $result), "html key is missing from format result.");
@@ -48,7 +48,7 @@ class CRM_Civalpa_TextFormatterTest extends \PHPUnit\Framework\TestCase
         self::assertEquals($result["text"], $emptyValue, "Invalid text in format result.");
         self::assertTrue(array_key_exists("debug", $result), "debug key is missing from format result.");
         self::assertEquals($result["debug"], $emptyValue, "Invalid debug in format result.");
-      // short values for text and html. config has to be unchanged, debug has to be empty.
+        // short values for text and html. config has to be unchanged, debug has to be empty.
         $shortText = "Something sort text.";
         $shortHtml = "<p>".$shortText."</p>";
         $result = CRM_Civalpa_TextFormatter::format($config, $shortText, $shortHtml);
@@ -58,7 +58,7 @@ class CRM_Civalpa_TextFormatterTest extends \PHPUnit\Framework\TestCase
         self::assertEquals($result["text"], $shortText, "Invalid text in format result.");
         self::assertTrue(array_key_exists("debug", $result), "debug key is missing from format result.");
         self::assertEquals($result["debug"], $emptyValue, "Invalid debug in format result.");
-      // long values for text and html. config has to be changed, debug has to be text and html.
+        // long values for text and html. config has to be changed, debug has to be text and html.
         $longText = "Something sort text like árvíztűrőtükörfúrógép. Something sort text like árvíztűrőtükörfúrógép. Something sort text like árvíztűrőtükörfúrógép. Something sort text like árvíztűrőtükörfúrógép. Something sort text like árvíztűrőtükörfúrógép. Something sort text like árvíztűrőtükörfúrógép.";
         $expectedLongText = "Something sort text like\nárvíztűrőtükörfúrógép. Something sort\ntext like árvíztűrőtükörfúrógép.\nSomething sort text like\nárvíztűrőtükörfúrógép. Something sort\ntext like árvíztűrőtükörfúrógép.\nSomething sort text like\nárvíztűrőtükörfúrógép. Something sort\ntext like árvíztűrőtükörfúrógép.";
         $longHtml = "<p>".$longText."</p>";

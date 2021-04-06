@@ -2,7 +2,6 @@
 
 class CRM_Civalpa_HeaderManipulator
 {
-
     public static function update(&$params, array $config, string $debugMessage = "")
     {
         foreach ($config["headers"] as $headerConfig) {

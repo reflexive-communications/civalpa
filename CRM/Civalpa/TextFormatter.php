@@ -2,7 +2,6 @@
 
 class CRM_Civalpa_TextFormatter
 {
-
     public static function format(array $config, string $text = "", string $html = ""): array
     {
         $response = [
@@ -10,7 +9,7 @@ class CRM_Civalpa_TextFormatter
         "html" => $html,
         "debug" => "",
         ];
-      // format the text if the format flag is set and the value is gt 0.
+        // format the text if the format flag is set and the value is gt 0.
         if ($config["text-line-width"]["use"] && $config["text-line-width"]["value"] > 0) {
             $wrappedText = wordwrap($text, $config["text-line-width"]["value"]);
             if ($wrappedText !== $text) {
@@ -18,7 +17,7 @@ class CRM_Civalpa_TextFormatter
                 $response["text"] = $wrappedText;
             }
         }
-      // format the html if the format flag is set and the value is gt 0.
+        // format the html if the format flag is set and the value is gt 0.
         if ($config["html-line-width"]["use"] && $config["html-line-width"]["value"] > 0) {
             $wrappedText = wordwrap($html, $config["html-line-width"]["value"]);
             if ($wrappedText !== $html) {

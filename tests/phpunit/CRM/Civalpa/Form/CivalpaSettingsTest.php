@@ -12,7 +12,6 @@ use Civi\Test\TransactionalInterface;
  */
 class CRM_Civalpa_Form_CivalpaSettingsTest extends \PHPUnit\Framework\TestCase implements HeadlessInterface, HookInterface, TransactionalInterface
 {
-
     const TEST_SETTINGS = [
         "debug-mode" => true,
         "text-line-width" => [

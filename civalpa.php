@@ -3,6 +3,7 @@
 require_once 'civalpa.civix.php';
 // phpcs:disable
 use CRM_Civalpa_ExtensionUtil as E;
+
 // phpcs:enable
 
 /**

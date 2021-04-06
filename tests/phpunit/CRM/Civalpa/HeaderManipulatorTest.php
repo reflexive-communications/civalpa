@@ -14,18 +14,18 @@ class CRM_Civalpa_HeaderManipulatorTest extends \PHPUnit\Framework\TestCase
         parent::setUp();
     }
 
-  /**
-   * The tearDown() method is executed after the test was executed (optional)
-   * This can be used for cleanup.
-   */
+    /**
+     * The tearDown() method is executed after the test was executed (optional)
+     * This can be used for cleanup.
+     */
     public function tearDown(): void
     {
         parent::tearDown();
     }
 
-  /**
-   * Update test case.
-   */
+    /**
+     * Update test case.
+     */
     public function testUpdateSetEmptyDebugFlag()
     {
         $config = [
