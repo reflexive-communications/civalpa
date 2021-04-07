@@ -10,26 +10,30 @@ use Civi\Test\TransactionalInterface;
  *
  * @group headless
  */
-class CRM_Civalpa_UpgraderHeadlessTest extends \PHPUnit\Framework\TestCase implements HeadlessInterface, HookInterface, TransactionalInterface {
-
-    public function setUpHeadless() {
+class CRM_Civalpa_UpgraderHeadlessTest extends \PHPUnit\Framework\TestCase implements HeadlessInterface, HookInterface, TransactionalInterface
+{
+    public function setUpHeadless()
+    {
         return \Civi\Test::headless()
             ->installMe(__DIR__)
             ->apply();
     }
 
-    public function setUp():void {
+    public function setUp():void
+    {
         parent::setUp();
     }
 
-    public function tearDown(): void {
+    public function tearDown(): void
+    {
         parent::tearDown();
     }
 
     /**
      * Test the install process.
      */
-    public function testInstall() {
+    public function testInstall()
+    {
         $installer = new CRM_Civalpa_Upgrader("civalpa_test", ".");
         try {
             $this->assertEmpty($installer->install());
@@ -41,7 +45,8 @@ class CRM_Civalpa_UpgraderHeadlessTest extends \PHPUnit\Framework\TestCase imple
     /**
      * Test the uninstall process.
      */
-    public function testUninstall() {
+    public function testUninstall()
+    {
         $installer = new CRM_Civalpa_Upgrader("civalpa_test", ".");
         $this->assertEmpty($installer->install());
         try {
@@ -50,5 +55,4 @@ class CRM_Civalpa_UpgraderHeadlessTest extends \PHPUnit\Framework\TestCase imple
             $this->fail("Should not throw exception.");
         }
     }
-
 }
