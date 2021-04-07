@@ -35,13 +35,13 @@ class CRM_Civalpa_Upgrader extends CRM_Civalpa_Upgrader_Base
         }
     }
 
-  /**
-   * It handles the db key suffix change. From the _rules to the _config that is
-   * provided by the rc-base.
-   *
-   * @return true on success
-   * @throws Exception
-   */
+    /**
+     * It handles the db key suffix change. From the _rules to the _config that is
+     * provided by the rc-base.
+     *
+     * @return true on success
+     * @throws Exception
+     */
     public function upgrade_5000()
     {
         $oldSuffixedName = $this->extensionName . "_rules";
@@ -63,7 +63,7 @@ class CRM_Civalpa_Upgrader extends CRM_Civalpa_Upgrader_Base
         return true;
     }
 
-  // By convention, functions that look like "function upgrade_NNNN()" are
+    // By convention, functions that look like "function upgrade_NNNN()" are
   // upgrade tasks. They are executed in order (like Drupal's hook_update_N).
 
   /**
