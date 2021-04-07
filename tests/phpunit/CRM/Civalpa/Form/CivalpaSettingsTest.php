@@ -10,8 +10,8 @@ use Civi\Test\TransactionalInterface;
  *
  * @group headless
  */
-class CRM_Civalpa_Form_CivalpaSettingsTest extends \PHPUnit\Framework\TestCase implements HeadlessInterface, HookInterface, TransactionalInterface {
-
+class CRM_Civalpa_Form_CivalpaSettingsTest extends \PHPUnit\Framework\TestCase implements HeadlessInterface, HookInterface, TransactionalInterface
+{
     const TEST_SETTINGS = [
         "debug-mode" => true,
         "text-line-width" => [
@@ -23,21 +23,25 @@ class CRM_Civalpa_Form_CivalpaSettingsTest extends \PHPUnit\Framework\TestCase i
             "value" => 30,
         ],
     ];
-    public function setUpHeadless() {
+    public function setUpHeadless()
+    {
         return \Civi\Test::headless()
             ->installMe(__DIR__)
             ->apply();
     }
 
-    public function setUp(): void {
+    public function setUp(): void
+    {
         parent::setUp();
     }
 
-    public function tearDown(): void {
+    public function tearDown(): void
+    {
         parent::tearDown();
     }
 
-    private function setupTestConfig() {
+    private function setupTestConfig()
+    {
         $config = new CRM_Civalpa_Config(E::SHORT_NAME);
         self::assertTrue($config->update(self::TEST_SETTINGS), "Config update has to be successful.");
     }
@@ -47,7 +51,8 @@ class CRM_Civalpa_Form_CivalpaSettingsTest extends \PHPUnit\Framework\TestCase i
      * Setup test configuration then call the function.
      * It shouldn't throw exception.
      */
-    public function testPreProcessExistingConfig() {
+    public function testPreProcessExistingConfig()
+    {
         $this->setupTestConfig();
         $form = new CRM_Civalpa_Form_CivalpaSettings();
         try {
@@ -62,7 +67,8 @@ class CRM_Civalpa_Form_CivalpaSettingsTest extends \PHPUnit\Framework\TestCase i
      * Setup test configuration then call the function.
      * It should throw exception.
      */
-    public function testPreProcessMissingConfig() {
+    public function testPreProcessMissingConfig()
+    {
         $form = new CRM_Civalpa_Form_CivalpaSettings();
         $config = new CRM_Civalpa_Config(E::SHORT_NAME);
         $config->remove();
@@ -77,7 +83,8 @@ class CRM_Civalpa_Form_CivalpaSettingsTest extends \PHPUnit\Framework\TestCase i
      * It shouldn't throw exception.
      * The title should be set.
      */
-    public function testBuildQuickForm() {
+    public function testBuildQuickForm()
+    {
         $this->setupTestConfig();
         $form = new CRM_Civalpa_Form_CivalpaSettings();
         self::assertEmpty($form->preProcess(), "PreProcess supposed to be empty.");
@@ -93,7 +100,8 @@ class CRM_Civalpa_Form_CivalpaSettingsTest extends \PHPUnit\Framework\TestCase i
      * Add Rules test case.
      * It shouldn't throw exception.
      */
-    public function testAddRules() {
+    public function testAddRules()
+    {
         $this->setupTestConfig();
         $form = new CRM_Civalpa_Form_CivalpaSettings();
         try {
@@ -106,7 +114,8 @@ class CRM_Civalpa_Form_CivalpaSettingsTest extends \PHPUnit\Framework\TestCase i
     /**
      * Config Validator test cases.
      */
-    public function testConfigValidatorInvalid() {
+    public function testConfigValidatorInvalid()
+    {
         $testData = [
             [
                 "data" => [
@@ -147,7 +156,8 @@ class CRM_Civalpa_Form_CivalpaSettingsTest extends \PHPUnit\Framework\TestCase i
     /**
      * Post Process test case. The values are the same.
      */
-    public function testPostProcessNotChanged() {
+    public function testPostProcessNotChanged()
+    {
         $_POST["debugMode"] = self::TEST_SETTINGS["debug-mode"];
         $_POST["useTextRule"] = self::TEST_SETTINGS["text-line-width"]["use"];
         $_POST["textLineWidth"] = self::TEST_SETTINGS["text-line-width"]["value"];
@@ -166,7 +176,8 @@ class CRM_Civalpa_Form_CivalpaSettingsTest extends \PHPUnit\Framework\TestCase i
     /**
      * Post Process test case. The values are changed.
      */
-    public function testPostProcessChanged() {
+    public function testPostProcessChanged()
+    {
         $_POST["debugMode"] = !self::TEST_SETTINGS["debug-mode"];
         $_POST["useTextRule"] = self::TEST_SETTINGS["text-line-width"]["use"];
         $_POST["textLineWidth"] = self::TEST_SETTINGS["text-line-width"]["value"];
@@ -185,7 +196,8 @@ class CRM_Civalpa_Form_CivalpaSettingsTest extends \PHPUnit\Framework\TestCase i
     /**
      * Set Default Values test case.
      */
-    public function testSetDefaultValues() {
+    public function testSetDefaultValues()
+    {
         $expectedDefaults = [
             "debugMode" => self::TEST_SETTINGS["debug-mode"],
             "useTextRule" => self::TEST_SETTINGS["text-line-width"]["use"],

@@ -1,6 +1,7 @@
 <?php
 
-class CRM_Civalpa_Config extends CRM_RcBase_Config {
+class CRM_Civalpa_Config
+{
     const DEFAULT_TEXT_LINE_WIDTH = 990;
     const DEFAULT_HTML_LINE_WIDTH = 990;
 
@@ -9,7 +10,8 @@ class CRM_Civalpa_Config extends CRM_RcBase_Config {
      *
      * @return array the default configuration object.
      */
-    public function defaultConfiguration(): array {
+    private function defaultConfiguration(): array
+    {
         return [
             "debug-mode" => true,
             "text-line-width" => [
