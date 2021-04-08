@@ -10,7 +10,7 @@ use Civi\Test\TransactionalInterface;
  *
  * @group headless
  */
-class CRM_Civalpa_UpgraderHeadlessTest extends \PHPUnit\Framework\TestCase implements HeadlessInterface, HookInterface, TransactionalInterface
+class CRM_Civalpa_UpgraderHeadlessTest extends \PHPUnit\Framework\TestCase implements HeadlessInterface
 {
     public function setUpHeadless()
     {
@@ -27,6 +27,18 @@ class CRM_Civalpa_UpgraderHeadlessTest extends \PHPUnit\Framework\TestCase imple
     public function tearDown(): void
     {
         parent::tearDown();
+    }
+
+    /**
+     * Create a clean DB before running tests
+     *
+     * @throws CRM_Extension_Exception_ParseException
+     */
+    public static function tearDownAfterClass(): void
+    {
+        \Civi\Test::headless()
+            ->uninstallMe(__DIR__)
+            ->apply(true);
     }
 
     /**
@@ -54,5 +66,44 @@ class CRM_Civalpa_UpgraderHeadlessTest extends \PHPUnit\Framework\TestCase imple
         } catch (Exception $e) {
             $this->fail("Should not throw exception.");
         }
+    }
+
+    /**
+     * Test the upgrade process.
+     */
+    public function testUpgrade_5000FreshInstall()
+    {
+        $installer = new CRM_Civalpa_Upgrader("civalpa_test", ".");
+        $this->assertEmpty($installer->install());
+        try {
+            $this->assertTrue($installer->upgrade_5000());
+        } catch (Exception $e) {
+            $this->fail("Should not throw exception. ".$e->getMessage());
+        }
+    }
+    public function testUpgrade_5000HasPreviousInstall()
+    {
+        $origConfig = [
+            "debug-mode" => true,
+            "text-line-width" => [
+                "use" => true,
+                "value" => 500,
+            ],
+            "html-line-width" => [
+                "use" => true,
+                "value" => 500,
+            ],
+        ];
+        Civi::settings()->add(["civalpa_test_rules" => $origConfig]);
+        $installer = new CRM_Civalpa_Upgrader("civalpa_test", ".");
+        $this->assertEmpty($installer->install());
+        try {
+            $this->assertTrue($installer->upgrade_5000());
+        } catch (Exception $e) {
+            $this->fail("Should not throw exception. ".$e->getMessage());
+        }
+        $newConfig = Civi::settings()->get("civalpa_test_config");
+        $this->assertEquals($origConfig, $newConfig, "Config has to be the same after the migration.");
+        $this->assertNull(Civi::settings()->get("civalpa_test_rules"), "The orig config has to be removed.");
     }
 }

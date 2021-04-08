@@ -72,8 +72,8 @@ class CRM_Civalpa_Form_CivalpaSettingsTest extends \PHPUnit\Framework\TestCase i
         $form = new CRM_Civalpa_Form_CivalpaSettings();
         $config = new CRM_Civalpa_Config(E::SHORT_NAME);
         $config->remove();
-        self::expectException(CRM_Core_Exception::class, "Invalid exception class.");
-        self::expectExceptionMessage(E::SHORT_NAME."_rules config invalid.", "Invalid exception message.");
+        self::expectException(CRM_Core_Exception::class);
+        self::expectExceptionMessage(E::SHORT_NAME."_config config invalid.");
         self::assertEmpty($form->preProcess(), "PreProcess supposed to be empty.");
     }
 

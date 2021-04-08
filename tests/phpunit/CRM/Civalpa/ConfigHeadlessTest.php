@@ -85,8 +85,8 @@ class CRM_Civalpa_ConfigHeadlessTest extends \PHPUnit\Framework\TestCase impleme
         self::assertEquals($cfg["html-line-width"]["value"], CRM_Civalpa_Config::DEFAULT_HTML_LINE_WIDTH, "Invalid html-line-width.value value.");
 
         self::assertTrue($config->remove(), "Remove config has to be successful.");
-        self::expectException(CRM_Core_Exception::class, "Invalid exception class.");
-        self::expectExceptionMessage("civalpa_test_rules config is missing.", "Invalid exception message.");
+        self::expectException(CRM_Core_Exception::class);
+        self::expectExceptionMessage("civalpa_test_config config is missing.");
         $cfg = $config->get();
     }
 
@@ -123,8 +123,8 @@ class CRM_Civalpa_ConfigHeadlessTest extends \PHPUnit\Framework\TestCase impleme
         self::assertEquals($cfg, $cfgLoaded, "Invalid loaded configuration.");
 
         $missingConfig = new CRM_Civalpa_Config("civalpa_test_missing_config");
-        self::expectException(CRM_Core_Exception::class, "Invalid exception class.");
-        self::expectExceptionMessage("civalpa_test_missing_config_rules config invalid.", "Invalid exception message.");
+        self::expectException(CRM_Core_Exception::class);
+        self::expectExceptionMessage("civalpa_test_missing_config_config config invalid.");
         self::assertEmpty($missingConfig->load(), "Load result supposed to be empty.");
     }
 }
