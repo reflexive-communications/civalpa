@@ -175,6 +175,11 @@ function civalpa_civicrm_themes(&$themes)
  */
 function civalpa_civicrm_alterMailParams(&$params, $context)
 {
+    // The format has to be applied only after tokens are applied.
+    // It means, in case of messageTemplate context, it has to return.
+    if ($context === 'messageTemplate') {
+        return;
+    }
     $cfg = new CRM_Civalpa_Config(E::SHORT_NAME);
     try {
         $cfg->load();
