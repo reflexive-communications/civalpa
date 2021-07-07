@@ -19,6 +19,34 @@ class CRM_Civalpa_ConfigHeadlessTest extends \PHPUnit\Framework\TestCase impleme
             ->apply();
     }
 
+    /**
+     * Apply a forced rebuild of DB, thus
+     * create a clean DB before running tests
+     *
+     * @throws \CRM_Extension_Exception_ParseException
+     */
+    public static function setUpBeforeClass(): void
+    {
+        // Resets DB and install depended extension
+        \Civi\Test::headless()
+            ->install('rc-base')
+            ->installMe(__DIR__)
+            ->apply(true);
+    }
+
+    /**
+     * Create a clean DB before running tests
+     *
+     * @throws CRM_Extension_Exception_ParseException
+     */
+    public static function tearDownAfterClass(): void
+    {
+        \Civi\Test::headless()
+            ->uninstallMe(__DIR__)
+            ->uninstall('rc-base')
+            ->apply(true);
+    }
+
     public function setUp(): void
     {
         parent::setUp();

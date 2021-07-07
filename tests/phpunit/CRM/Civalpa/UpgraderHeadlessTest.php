@@ -19,14 +19,19 @@ class CRM_Civalpa_UpgraderHeadlessTest extends \PHPUnit\Framework\TestCase imple
             ->apply();
     }
 
-    public function setUp():void
+    /**
+     * Apply a forced rebuild of DB, thus
+     * create a clean DB before running tests
+     *
+     * @throws \CRM_Extension_Exception_ParseException
+     */
+    public static function setUpBeforeClass(): void
     {
-        parent::setUp();
-    }
-
-    public function tearDown(): void
-    {
-        parent::tearDown();
+        // Resets DB and install depended extension
+        \Civi\Test::headless()
+            ->install('rc-base')
+            ->installMe(__DIR__)
+            ->apply(true);
     }
 
     /**
@@ -38,7 +43,18 @@ class CRM_Civalpa_UpgraderHeadlessTest extends \PHPUnit\Framework\TestCase imple
     {
         \Civi\Test::headless()
             ->uninstallMe(__DIR__)
+            ->uninstall('rc-base')
             ->apply(true);
+    }
+
+    public function setUp():void
+    {
+        parent::setUp();
+    }
+
+    public function tearDown(): void
+    {
+        parent::tearDown();
     }
 
     /**
