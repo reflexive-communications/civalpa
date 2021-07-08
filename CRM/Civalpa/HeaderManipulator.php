@@ -4,6 +4,10 @@ class CRM_Civalpa_HeaderManipulator
 {
     public static function update(&$params, array $config, string $debugMessage = "")
     {
+        if (!isset($config['headers'])) {
+            Civi::log()->error('Civalpa | Header config is missing. Configdump: '.var_export($config, true));
+            return;
+        }
         foreach ($config["headers"] as $headerConfig) {
             $headerName = $headerConfig["name"];
             if ($headerConfig["unset"]) {

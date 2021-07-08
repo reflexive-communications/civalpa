@@ -194,6 +194,7 @@ function civalpa_civicrm_alterMailParams(&$params, $context)
     $result = CRM_Civalpa_TextFormatter::format($config, $params["text"], $params["html"]);
     $params["text"] = $result["text"];
     $params["html"] = $result["html"];
+    Civi::log()->info('Civalpa | Header manipulation in the following context: '.$context);
     CRM_Civalpa_HeaderManipulator::update($params, $config, $result["debug"]);
 }
 

@@ -19,7 +19,8 @@ The extension is licensed under [AGPL-3.0](LICENSE.txt).
 ## Requirements
 
 * PHP v7.2+
-* CiviCRM 5.29
+* CiviCRM 5.29+
+* [RC-Base](https://github.com/reflexive-communications/rc-base) v0.8.1+
 
 ## Installation (Web UI)
 
