@@ -320,4 +320,33 @@ class CRM_Civalpa_HeaderManipulatorTest extends \PHPUnit\Framework\TestCase
         self::assertTrue(array_key_exists("X-Something", $params["headers"]), "header shouldn't be set after header update.");
         self::assertEquals("1", $params["headers"]["X-Something"], "Header value supposed to be expected value.");
     }
+    public function testUpdateMissingHeaderConfig()
+    {
+        $config = [
+            "debug-mode" => true,
+            "text-line-width" => [
+                "use" => true,
+                "value" => 50,
+            ],
+            "html-line-width" => [
+                "use" => true,
+                "value" => 50,
+            ],
+        ];
+        $params = [
+            "text" => "test text",
+            "html" => "<p>test html</p>",
+            "X-ToDelete" => "myValue",
+            "headers" => [
+                "X-Something" => "1",
+            ],
+        ];
+        $debugMessage = "existingError,";
+        CRM_Civalpa_HeaderManipulator::update($params, $config, $debugMessage);
+        self::assertTrue(array_key_exists("headers", $params), "headers key has to be set.");
+        self::assertTrue(array_key_exists("X-CIVALPA-DEBUG", $params["headers"]), "X-CIVALPA-DEBUG header should be set after header update.");
+        self::assertEquals($debugMessage, $params["headers"]["X-CIVALPA-DEBUG"], "Header value supposed to be expected value.");
+        self::assertTrue(array_key_exists("X-Something", $params["headers"]), "header shouldn't be set after header update.");
+        self::assertEquals("1", $params["headers"]["X-Something"], "Header value supposed to be expected value.");
+    }
 }
