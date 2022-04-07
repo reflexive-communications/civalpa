@@ -1,6 +1,6 @@
 # CivAlPa
 
-![CI](https://github.com/reflexive-communications/civalpa/workflows/CI/badge.svg)
+[![CI](https://github.com/reflexive-communications/civalpa/actions/workflows/main.yml/badge.svg)](https://github.com/reflexive-communications/civalpa/actions/workflows/main.yml)
 
 Civimail Alter mail Params extension. It can be used for wrapping the text, html strings, also manipulating headers. The settings form of this extension could be found under `Administer > CiviMail > CivAlPa Settings`. You need to have at lease administer civicrm priv. to be able to check or update the settings.
 

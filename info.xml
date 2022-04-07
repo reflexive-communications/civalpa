@@ -1,33 +1,32 @@
 <?xml version="1.0"?>
 <extension key="civalpa" type="module">
-  <file>civalpa</file>
-  <name>Civimail Alter mail Params</name>
-  <description>Civimail Alter mail Params extension. It can be used for wrapping the text, html strings, also manipulating headers.</description>
-  <license>AGPL-3.0</license>
-  <maintainer>
-    <author>akosgarai</author>
-    <email>szlem01@gmail.com</email>
-  </maintainer>
-  <urls>
-    <url desc="Main Extension Page">https://github.com/reflexive-communications/civalpa</url>
-    <url desc="Documentation">https://github.com/reflexive-communications/civalpa</url>
-    <url desc="Support">https://github.com/reflexive-communications/civalpa/issues</url>
-    <url desc="Licensing">http://www.gnu.org/licenses/agpl-3.0.html</url>
-  </urls>
-  <releaseDate>2022-04-05</releaseDate>
-  <version>0.3.4</version>
-  <develStage>alpha</develStage>
-  <compatibility>
-    <ver>5.0</ver>
-  </compatibility>
-  <requires>
-    <ext>rc-base</ext>
-  </requires>
-  <comments>Civimail Alter mail Params extension. It can be used for wrapping the text, html strings, also manipulating headers.</comments>
-  <classloader>
-    <psr4 prefix="Civi\" path="Civi"/>
-  </classloader>
-  <civix>
-    <namespace>CRM/Civalpa</namespace>
-  </civix>
+    <file>civalpa</file>
+    <name>Civimail Alter Mail Params</name>
+    <description>Wraps email text and HTML, also manipulating headers</description>
+    <license>AGPL-3.0</license>
+    <maintainer>
+        <author>akosgarai</author>
+        <email>szlem01@gmail.com</email>
+    </maintainer>
+    <urls>
+        <url desc="Main Extension Page">https://github.com/reflexive-communications/civalpa</url>
+        <url desc="Documentation">https://github.com/reflexive-communications/civalpa</url>
+        <url desc="Support">https://github.com/reflexive-communications/civalpa/issues</url>
+        <url desc="Licensing">https://www.gnu.org/licenses/agpl-3.0.html</url>
+    </urls>
+    <releaseDate>2022-04-05</releaseDate>
+    <version>0.3.4</version>
+    <develStage>beta</develStage>
+    <compatibility>
+        <ver>5.0</ver>
+    </compatibility>
+    <requires>
+        <ext>rc-base</ext>
+    </requires>
+    <classloader>
+        <psr4 prefix="Civi\" path="Civi"/>
+    </classloader>
+    <civix>
+        <namespace>CRM/Civalpa</namespace>
+    </civix>
 </extension>
